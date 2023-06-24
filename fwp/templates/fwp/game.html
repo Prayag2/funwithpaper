@@ -1,0 +1,64 @@
+{% extends 'fwp/base.html' %}
+{% load static %}
+{% block title %}{{game.name}} | Fun With Paper 2{% endblock %}
+{% block body %}
+<div class="games_container dark block decorator game_detail">
+  <div class="decorator_child padding">
+    <div class="border white game_image no_shadow" style="background-image: url('{{game.image_link}}')">
+    </div>
+    <div class="game_title flex">
+      <h1 class="tac padding text_stroke u_heading">{{game.name}}</h1>
+    </div>
+    <div class="content tac">
+      <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+          <h3>How To Play: </h3>
+          <iframe class="video" src="https://www.youtube.com/embed/{{game.video_id}}"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          {% if game.tutorial_video_id %}
+          <h3>How To Make: </h3>
+          <iframe class="video" src="https://www.youtube.com/embed/{{game.tutorial_video_id}}"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          {% endif %}
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+          <div class="game_content">
+            <hr>
+            <h3 class="u_heading">About This Game</h3>
+            <div class="game_description">{{game.description}}</div>
+            {% if game.instructions %}
+            <hr>
+            <h3 class="u_heading">Game Instructions</h3>
+            <div class="game_instructions">{{game.instructions}}</div>
+            {% endif %}
+          </div>
+          <hr>
+          <h3>Game Template</h3>
+          {% if not game.template_link %}
+          <p>Template Coming Soon!</p>
+          {% else %}
+          <a class="button blue" target="_blank" href="{%url 'download' game.id%}">
+            <button>Download Template</button>
+          </a>
+          {% endif %}
+          <hr>
+          <p class="u_heading">{{game.user_views}} views</p>
+          <p>x--x--x</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script type="text/javascript">
+  let gameDescription = document.querySelector(".game_description")
+  gameDescription.innerHTML = marked.parse(gameDescription.textContent)
+
+  try {
+    let gameInstructions = document.querySelector(".game_instructions")
+    gameInstructions.innerHTML = marked.parse(gameInstructions.textContent)
+  } catch {
+    // do nothing
+  }
+</script>
+{% endblock %}

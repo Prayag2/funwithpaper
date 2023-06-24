@@ -1,0 +1,22 @@
+{% extends "fwp/base.html" %}
+{% load static %}
+{% block title %}Fun With Paper 2 | Official Website{% endblock %}
+{% block body %}
+  <div class="home_title center p-absolute">
+    <img src="{% static 'fwp/images/title.svg' %}" alt="Fun With Paper 2 | Official Website">
+    <div class="home_title-buttons flex">
+      <div class="row fluid">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 margin_on_small">
+          <a href="{% url 'games'%}" class="fluid button blue">
+            <button>Games</button>
+          </a>
+        </div>
+        <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12">
+          <a href="http://bit.ly/fwpyoutube" class="fluid button red" target="_blank">
+            <button>YouTube</button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

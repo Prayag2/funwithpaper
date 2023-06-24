@@ -1,0 +1,45 @@
+{% load static %}
+<div class="nav">
+  <div class="nav_container">
+    <a class="logo flex" href="/">
+      <img src="{% static 'fwp/images/logo.png' %}">
+    </a>
+    <div class="links flex">
+      <div class="hide_on_small flex text_stroke">
+        <a href="{% url 'homepage' %}" class="{% if request.path == '/'%}active{% endif%}">Home</a>
+        <a href="{% url 'games' %}" class="{% if request.path == '/games/'%}active{% endif%}">Games</a>
+        <a href="{% url 'request_game' %}" class="{% if request.path == '/request/'%}active{% endif%}">Request A Game</a>
+        <a class="button red" href="http://bit.ly/fwpyoutube" target="_blank">
+          <button>SUBSCRIBE</button>
+        </a>
+      </div>
+      <img class="menu_button show_on_small" src="{% static 'fwp/images/buttons/btn_menu.svg' %}" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="sidenav show_on_small p-absolute">
+  <div class="links text_stroke">
+    <a href="{% url 'homepage' %}">Home</a>
+    <a href="{% url 'games' %}">Games</a>
+    <a href="{% url 'request_game' %}">Request A Game</a>
+    <a class="links_button button red" href="http://bit.ly/fwpyoutube" target="_blank">
+        <button>SUBSCRIBE</button>
+    </a>
+  </div>
+</div>
+<div class="sidenav-backdrop p-absolute topleft max"></div>
+
+<script type="text/javascript">
+  menu_btn = document.querySelector('.menu_button')
+  sidenav = document.querySelector('.sidenav')
+  sidenav_backdrop = document.querySelector('.sidenav-backdrop')
+  menu_btn.onclick = () => {
+    sidenav.style.left = '0';
+    sidenav_backdrop.style.display = 'block';
+  }
+  sidenav_backdrop.onclick = () => {
+    sidenav.style.left = '-100%';
+    sidenav_backdrop.style.display = 'none';
+  }
+</script>

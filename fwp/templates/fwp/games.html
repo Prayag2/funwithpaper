@@ -1,0 +1,51 @@
+{% extends 'fwp/base.html' %}
+{% load static %}
+{% block title %}Paper Games | Fun With Paper 2{% endblock %}
+{% block body %}
+<div class="games_container tac decorator dark block">
+  <div class="decorator_child padding">
+    <form action="{% url 'search' %}" method="get">
+      <div class="row">
+        <div class="col-lg-10 col-md-9 col-sm-8 col-xs-12 no-padding margin_on_small">
+          <div class="decorator white fluid button_height">
+              <div class="decorator_child flex">
+                <input type="text" name="q" placeholder="Search">
+              </div>
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-4 col-xs-12 no-padding">
+          <div class="button blue fluid">
+            <button type="submit">
+              search
+            </button>
+          </div>
+        </div>
+      </div>
+      <br>
+      {% if message %}
+        <p>{{message}}</p>
+        <br>
+      {% endif %}
+    </form>
+    <div class="row games">
+        {% for game in games_list %}
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
+          <!-- <a href="{% url 'game' game.id %}"> -->
+          <div class="post border white margin-bottom">
+            <a href="{% url 'game' game.id %}" class="image">
+              <div class="img_overlay"></div>
+              <img src="{{game.image_link}}" alt="image">
+            </a>
+            <a href="{% url 'category' game.category.name %}" class="category tac fluid flex text_stroke">
+              {{game.category}}
+            </a>
+            <a href="{% url 'game' game.id %}" class="title tac flex border white">
+              <h3 class="no_stroke">{{game.name}}</h3>
+            </a> 
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}

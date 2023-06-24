@@ -1,0 +1,33 @@
+{% extends 'fwp/base.html' %}
+{% load static %}
+{% block title %}Request A Game | Fun With Paper 2{% endblock %}
+{% block body %}
+<div class="games_container decorator dark padding block" style="height: auto;">
+  <div class="decorator_child">
+    <form action="{% url 'request_game' %}" method="post" style="padding: 1rem; text-align: center;">
+      {% csrf_token %}
+      {% for field in form %}
+      <label class="u_heading">{{field.label}}</label>
+      <br><br>
+      <div class="decorator white block margin-bottom">
+        <div class="decorator_child padding">
+          {{field}}
+        </div>
+      </div>
+      {% endfor %}
+      <div class="button green block">
+        <button type="submit">
+          Send Request
+        </button>
+      </div>
+      <br>
+      {% if messages %}
+        {% for message in messages %}
+          <p style="color: var(--white)">{{message}}</p>
+          <br>
+        {% endfor %}
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock %}

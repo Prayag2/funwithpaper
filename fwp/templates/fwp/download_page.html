@@ -1,0 +1,19 @@
+{% extends 'fwp/base.html' %}
+{% load static %}
+{% block title %} Redirecting... | Fun With Paper 2{% endblock %}
+{% block body %}
+<div class="games_container decorator tac dark block" style="padding: 1rem; height: auto;">
+  <div class="decorator_child padding">
+    <img src="{%static 'fwp/images/loading.gif'%}" alt="Loading..." onload="redirectFunc()">
+    <br><br>
+    <p>You will be redirected in a few moments...</p>
+  </div>
+</div>
+<script type="text/javascript">
+  function redirectFunc() {
+    setTimeout(() => {
+      window.location.replace("{{download_link}}")
+    }, 10000)
+  }
+</script>
+{% endblock %}

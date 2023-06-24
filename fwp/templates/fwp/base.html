@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <meta content='width=device-width; initial-scale=1.0; user-scalable=0;' name='viewport' />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'fwp/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'fwp/css/grid.css' %}" />
+    <link rel="shortcut icon" href="{% static 'fwp/images/favicon.png' %}"/>
+    {% block head %}{% endblock %}
+  </head>
+
+  <body onload="loaderFunc()" scroll="no">
+    <div class="bg-colour max"></div>
+    {% include 'fwp/navbar.html' %}
+    {% include 'fwp/loader.html' %} 
+    {% block body %}{% endblock %}
+
+    <img class="bg-image center" src="{% static 'fwp/images/background.png' %}">
+    <script type="text/javascript">
+      document.querySelector(
+        ".bg-image"
+      ).style.height =
+        Math.max(window.innerHeight, window.innerWidth) + "px";
+
+      function loaderFunc() {
+        loader = document.querySelector(".loader");
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 500);
+        }, 500);
+      }
+    </script>
+  </body>
+</html>
